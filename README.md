@@ -1,2 +1,0 @@
-# Psicoterapia
-Psicoterapia profunda
