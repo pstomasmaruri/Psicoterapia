@@ -14,7 +14,16 @@
         .bg-verde-agua { background-color: #78A083; }
         .text-verde-agua { color: #78A083; }
         .bg-azul-profundo { background-color: #34495E; }
-        .hero-gradient { background: linear-gradient(rgba(52, 73, 94, 0.8), rgba(52, 73, 94, 0.8)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+       .hero-gradient { background: linear-gradient(rgba(52, 73, 94, 0.8), rgba(52, 73, 94, 0.8)), url('https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; }
+
+        /* Efecto blanco y negro → color al pasar el cursor */
+        .foto-perfil {
+            filter: grayscale(100%);
+            transition: filter 0.6s ease;
+        }
+        .foto-perfil:hover {
+            filter: grayscale(0%);
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 leading-relaxed">
