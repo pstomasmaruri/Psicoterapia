@@ -117,13 +117,84 @@
     <!-- Testimonios -->
     <section id="testimonios" class="py-24 bg-azul-profundo text-white px-6">
         <div class="max-w-4xl mx-auto text-center">
-            <i class="fas fa-quote-left text-4xl mb-8 text-verde-agua opacity-50"></i>
-            <div class="mb-8 italic text-xl font-light">
-                "El trabajo con los símbolos y la meditación cambió mi perspectiva sobre la ansiedad. Encontré un espacio de paz y profundidad que no conocía en la terapia tradicional."
+
+            <!-- Carrusel de testimonios -->
+            <div class="relative">
+                <!-- Icono de cita -->
+                <i class="fas fa-quote-left text-4xl mb-8 text-verde-agua opacity-50"></i>
+
+                <!-- Contenedor de testimonios -->
+                <div id="testimonios-container" class="overflow-hidden">
+                    <div class="testimonio active">
+                        <div class="mb-8 italic text-xl font-light">
+                            "El trabajo con los símbolos y la meditación cambió mi perspectiva sobre la ansiedad. Encontré un espacio de paz y profundidad que no conocía en la terapia tradicional."
+                        </div>
+                        <p class="uppercase tracking-widest text-sm font-bold">— Paciente en proceso de individuación</p>
+                    </div>
+                    <div class="testimonio hidden">
+                        <div class="mb-8 italic text-xl font-light">
+                            "El análisis de mis sueños me ayudó a entender patrones que repetía sin darme cuenta. Fue un proceso transformador y profundamente humano."
+                        </div>
+                        <p class="uppercase tracking-widest text-sm font-bold">— Paciente, proceso de 2 años</p>
+                    </div>
+                    <div class="testimonio hidden">
+                        <div class="mb-8 italic text-xl font-light">
+                            "Encontré en este espacio una integración real entre mi vida espiritual y mi salud mental. Algo que no había logrado en ningún otro proceso terapéutico."
+                        </div>
+                        <p class="uppercase tracking-widest text-sm font-bold">— Paciente internacional, online</p>
+                    </div>
+                </div>
+
+                <!-- Botones de navegación -->
+                <div class="flex justify-center items-center gap-8 mt-10">
+                    <button onclick="cambiarTestimonio(-1)"
+                        class="w-12 h-12 rounded-full border-2 border-white/40 hover:border-verde-agua hover:text-verde-agua transition flex items-center justify-center text-white text-lg">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <!-- Indicadores de puntos -->
+                    <div class="flex gap-2" id="indicadores"></div>
+
+                    <button onclick="cambiarTestimonio(1)"
+                        class="w-12 h-12 rounded-full border-2 border-white/40 hover:border-verde-agua hover:text-verde-agua transition flex items-center justify-center text-white text-lg">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
             </div>
-            <p class="uppercase tracking-widest text-sm font-bold">— Paciente en proceso de individuación</p>
+
         </div>
     </section>
+
+    <script>
+        // Lógica del carrusel de testimonios
+        let testimonioActual = 0;
+        const testimonios = document.querySelectorAll('.testimonio');
+        const indicadoresContainer = document.getElementById('indicadores');
+
+        // Crear puntos indicadores
+        testimonios.forEach((_, i) => {
+            const punto = document.createElement('button');
+            punto.className = 'w-2 h-2 rounded-full transition ' + (i === 0 ? 'bg-verde-agua' : 'bg-white/30');
+            punto.onclick = () => irA(i);
+            indicadoresContainer.appendChild(punto);
+        });
+
+        function irA(index) {
+            testimonios[testimonioActual].classList.add('hidden');
+            testimonios[testimonioActual].classList.remove('active');
+            indicadoresContainer.children[testimonioActual].className = 'w-2 h-2 rounded-full transition bg-white/30';
+
+            testimonioActual = (index + testimonios.length) % testimonios.length;
+
+            testimonios[testimonioActual].classList.remove('hidden');
+            testimonios[testimonioActual].classList.add('active');
+            indicadoresContainer.children[testimonioActual].className = 'w-2 h-2 rounded-full transition bg-verde-agua';
+        }
+
+        function cambiarTestimonio(direccion) {
+            irA(testimonioActual + direccion);
+        }
+    </script>
 
     <!-- Contacto -->
     <section id="contacto" class="py-24 px-6 bg-white">
